@@ -2,9 +2,9 @@
     <el-row type="flex" justify="center">
         <el-col :xs="24" :sm="18" :md="12" :lg="10">
             <div class="content flex-center" style=" margin-left: 20px; margin-right: 20px;display: flex; flex-direction: column">
-                <el-card style="max-width: 500px; width: 100%; background: transparent; border: none">
+                <el-card style="max-width: 500px; width: 100%">
                 <el-form ref="form" :model="form" @submit.native.prevent="onSubmit">
-                    <h2 style="color: white">Вход</h2><br>
+                    <h2>Вход</h2><br>
                     <el-form-item >
                         <el-input placeholder="Login" v-model="form.login"></el-input>
                     </el-form-item>

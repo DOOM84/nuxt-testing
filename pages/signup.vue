@@ -2,11 +2,22 @@
     <el-row type="flex" justify="center">
         <el-col :xs="24" :sm="18" :md="12" :lg="10">
             <div class="content flex-center" style=" margin-left: 20px; margin-right: 20px;display: flex; flex-direction: column">
-                <el-card style="max-width: 500px; width: 100%; background: transparent; border: none">
+                <el-card style="max-width: 500px; width: 100%">
                     <el-form ref="form" :model="form" @submit.native.prevent="onSubmit">
-                        <h2 style="color: white">Вход</h2><br>
+                        <h2>Регистрация</h2><br>
                         <el-form-item >
-                            <el-input placeholder="Login" v-model="form.login"></el-input>
+                            <el-input type="email" placeholder="Email" v-model="form.email"></el-input>
+                        </el-form-item>
+                        <el-form-item>
+                        <el-select style="max-width: 500px; width: 100%;" v-model="value" placeholder="Your group">
+                            <el-option
+                                    v-for="item in options"
+                                    :key="item.value"
+                                    :label="item.label"
+                                    :value="item.value"
+                                    :disabled="item.disabled">
+                            </el-option>
+                        </el-select>
                         </el-form-item>
                         <el-form-item>
                             <el-input placeholder="Password" type="password" v-model="form.password"></el-input>
@@ -56,10 +67,27 @@
         data() {
             return {
                 form: {
-                    login: '',
+                    email: '',
                     password: '',
                     password_confirmation: ''
-                }
+                },
+                options: [{
+                    value: 'Option1',
+                    label: 'Option1'
+                }, {
+                    value: 'Option2',
+                    label: 'Option2',
+                }, {
+                    value: 'Option3',
+                    label: 'Option3'
+                }, {
+                    value: 'Option4',
+                    label: 'Option4'
+                }, {
+                    value: 'Option5',
+                    label: 'Option5'
+                }],
+                value: ''
             }
         },
         methods: {
