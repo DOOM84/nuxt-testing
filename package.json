@@ -1,0 +1,21 @@
+{
+  "name": "nuxt-test",
+  "version": "1.0.0",
+  "description": "Adaptive web-site for English testing",
+  "author": "Artem",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate"
+  },
+  "dependencies": {
+    "element-ui": "^2.4.11",
+    "@nuxtjs/axios": "^5.3.6",
+    "nuxt": "^2.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.9"
+  }
+}
