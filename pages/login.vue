@@ -6,7 +6,7 @@
                 <el-form ref="form" :model="form" @submit.native.prevent="onSubmit">
                     <h2>Вход</h2><br>
                     <el-form-item >
-                        <el-input placeholder="Login" v-model="form.login"></el-input>
+                        <el-input type="email" placeholder="Email" v-model="form.email"></el-input>
                     </el-form-item>
                     <el-form-item>
                         <el-input placeholder="Password" type="password" v-model="form.password"></el-input>
@@ -29,8 +29,13 @@
                                 </el-button>
                             </nuxt-link>
 
-
-                        <el-button round>Забыл пароль</el-button>
+                        <nuxt-link style="color: white; text-decoration: none;" to="/reset">
+                            <el-button
+                                    round
+                            >
+                                Забыл пароль
+                            </el-button>
+                        </nuxt-link>
 
                     </el-form-item>
                 </el-form>
@@ -51,7 +56,7 @@
         data() {
             return {
                 form: {
-                    login: '',
+                    email: '',
                     password: ''
                 }
             }

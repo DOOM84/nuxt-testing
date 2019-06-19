@@ -24,7 +24,8 @@ export default {
   */
   css: [
     'element-ui/lib/theme-chalk/index.css',
-      '@/theme/index.scss'
+      '@/theme/index.scss',
+    '@/node_modules/vue-plyr/dist/vue-plyr.css'
   ],
   /*
   ** Plugins to load before mounting the App

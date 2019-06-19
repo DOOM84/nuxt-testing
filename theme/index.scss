@@ -46,10 +46,55 @@ html, body {
   height: 100vh;
 }
 
-.page-enter-active, .page-leave-active {
-  transition: opacity .4s;
+.page-enter-active,
+.page-leave-active,
+.layout-enter-active,
+.layout-leave-active {
+  transition: opacity .5s
 }
 
-.page-enter, .page-leave-active {
-  opacity: 0;
+.page-enter,
+.page-leave-active,
+.layout-enter,
+.layout-leave-active {
+  opacity: 0
+}
+
+table {
+  display: table;
+  border-collapse: collapse;
+  border-spacing: 2px;
+  border-color: grey;
+}
+
+.table{
+  width: 100%;
+  margin-bottom: 1rem;
+  background-color: transparent;
+}
+
+.table thead th {
+  vertical-align: bottom;
+  border-bottom: 2px solid #dee2e6;
+}
+.table td, .table th {
+  padding: .75rem;
+  vertical-align: top;
+  border-top: 1px solid #dee2e6;
+}
+
+.table td, .table th {
+  padding: .75rem;
+  vertical-align: top;
+  border-top: 1px solid #dee2e6;
+}
+.table .thead-light th {
+  color: #495057;
+  background-color: #e9ecef;
+  border-color: #dee2e6;
+}
+.table .thead-dark th {
+  color: #f8fafc;
+  background-color: #212529;
+  border-color: #32383e;
 }
