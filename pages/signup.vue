@@ -1,58 +1,60 @@
 <template>
     <el-row type="flex" justify="center">
         <el-col :xs="24" :sm="18" :md="12" :lg="10">
-            <div class="content flex-center" style=" margin-left: 20px; margin-right: 20px;display: flex; flex-direction: column">
+            <div class="content flex-center"
+                 style=" margin-left: 20px; margin-right: 20px;display: flex; flex-direction: column">
                 <el-card style="max-width: 500px; width: 100%; margin-top: 5rem;">
-                    <el-form ref="form" :model="form" @submit.native.prevent="onSubmit">
+                    <el-form
+                            :model="form"
+                            :rules="rules"
+                            ref="form"
+                            @submit.native.prevent="onSubmit"
+                    >
                         <h2>Регистрация</h2><br>
-                        <el-form-item >
+                        <el-form-item prop="email">
                             <el-input type="email" placeholder="Email" v-model="form.email"></el-input>
                         </el-form-item>
-                        <el-form-item>
-                        <el-select style="max-width: 500px; width: 100%;" v-model="value" placeholder="Your group">
-                            <el-option
-                                    v-for="item in options"
-                                    :key="item.value"
-                                    :label="item.label"
-                                    :value="item.value"
-                                    :disabled="item.disabled">
-                            </el-option>
-                        </el-select>
+                        <el-form-item prop="group">
+                            <el-select style="max-width: 500px; width: 100%;" v-model="form.group"
+                                       placeholder="Your group">
+                                <el-option
+                                        v-for="item in options"
+                                        :key="item.value"
+                                        :label="item.label"
+                                        :value="item.value"
+                                        :disabled="item.disabled">
+                                </el-option>
+                            </el-select>
                         </el-form-item>
-                        <el-form-item>
+                        <el-form-item prop="password">
                             <el-input placeholder="Password" type="password" v-model="form.password"></el-input>
                         </el-form-item>
-                        <el-form-item>
-                            <el-input placeholder="Password confirmation" type="password" v-model="form.password_confirmation"></el-input>
+                        <el-form-item prop="password_confirmation">
+                            <el-input placeholder="Password confirmation" type="password"
+                                      v-model="form.password_confirmation"></el-input>
                         </el-form-item>
                         <el-form-item>
                             <el-button
                                     type="success"
                                     native-type="submit"
                                     round
+                                    :loading="loading"
                             >
                                 Регистрация
                             </el-button>
 
 
-                                <nuxt-link style="color: white; text-decoration: none;" to="/login">
-                                    <el-button
-                                            type="primary"
-                                            round
-                                    >
-                                Войти
-                                    </el-button>
-                                </nuxt-link>
-
-
-
-
-
+                            <nuxt-link style="color: white; text-decoration: none;" to="/login">
+                                <el-button
+                                        type="primary"
+                                        round
+                                >
+                                    Войти
+                                </el-button>
+                            </nuxt-link>
                         </el-form-item>
                     </el-form>
-
                 </el-card>
-
             </div>
         </el-col>
 
@@ -66,10 +68,29 @@
     export default {
         data() {
             return {
+                loading: false,
                 form: {
                     email: '',
+                    group: '',
                     password: '',
                     password_confirmation: ''
+                },
+                rules: {
+                    email: [
+                        {required: true, message: 'Введите Email', trigger: 'blur'},
+                        {type: 'email', message: 'Введите корректный Email адрес', trigger: ['blur', 'change']}
+                    ],
+                    group: [
+                        {required: true, message: 'Выберите Вашу группу', trigger: 'change'},
+                    ],
+                    password: [
+                        {min: 6, message: 'Пароль должен быть не менее 6 сиволов', trigger: 'blur'},
+                        { validator: this.validatePass, trigger: 'blur' },
+                    ],
+                    password_confirmation: [
+                        {min: 6, message: 'Пароль должен быть не менее 6 сиволов', trigger: 'blur'},
+                        { validator: this.validatePass2, trigger: 'blur' }
+                    ],
                 },
                 options: [{
                     value: 'Option1',
@@ -87,33 +108,53 @@
                     value: 'Option5',
                     label: 'Option5'
                 }],
-                value: ''
+                //value: ''
             }
         },
         methods: {
             onSubmit() {
-                console.log('submit!');
+                this.$refs.form.validate(/*async*/ valid => {
+                    if (valid) {
+                        this.loading = true;
+                        try {
+                            const formData = {
+                                email: this.form.email,
+                                group: this.form.group,
+                                password: this.form.password,
+                                password_confirmation: this.form.password_confirmation
+                            };
+                            /*await this.$store.dispatch('auth/login', formData);
+                            this.$router.push('/')*/
+
+                        } catch (e) {
+                            this.loading = false
+                        }
+                    }
+                })
+            },
+            validatePass(rule, value, callback) {
+                if (value === '') {
+                    callback(new Error('Введите ваш пароль'));
+                } else {
+                    if (this.form.password_confirmation !== '') {
+                        this.$refs.form.validateField('password_confirmation');
+                    }
+                    callback();
+                }
+            },
+            validatePass2(rule, value, callback) {
+                if (value === '') {
+                    callback(new Error('Введите подтверждение пароля'));
+                } else if (value !== this.form.password) {
+                    callback(new Error('Введенные пароли не совпадают'));
+                } else {
+                    callback();
+                }
             }
-        }
+    }
     }
 </script>
 
 <style lang="scss" scoped>
-    /*html, body {
-      background-color: #fff;
-      color: #636b6f;
-      //font-family: 'Nunito', sans-serif;
-      //font-weight: 200;
-      height: 100vh;
-      margin: 0;
-    }
-    .full-height {
-      height: 100vh;
-    }*/
-
-    /*.title {
-      font-size: 84px;
-    }*/
-
 
 </style>
