@@ -5,7 +5,7 @@
                 <el-card style="max-width: 500px; width: 100%; margin-top: 5rem;">
 
 
-                            <el-select style="max-width: 500px; width: 100%;" v-model="value" placeholder="Choose topic">
+                            <el-select style="max-width: 500px; width: 100%;" v-model="topicId" placeholder="Choose topic">
                                 <el-option
                                         v-for="topic in topics"
                                         :key="topic.value"
@@ -18,18 +18,10 @@
                                 @click="toTest"
                                 type="success"
                                 round
-                                :disabled="!value"
+                                :disabled="!topicId"
                         >
-                            Go to the testing
+                            <h3>Go to the testing</h3>
                         </el-button>
-                            <!--<el-button
-                                    type="success"
-                                    round
-                                    :disabled="!value"
-                            >
-                                Go to the testing
-                            </el-button>-->
-
                 </el-card>
 
             </div>
@@ -43,6 +35,7 @@
 
 <script>
     export default {
+        middleware: ['auth'],
         data(){
             return {
                 topics:[ {
@@ -54,12 +47,13 @@
                         value: 2
                     }
                 ],
-                value: ''
+                topicId: ''
             }
         },
         methods: {
             toTest(){
-                this.$router.push('/test');
+                //this.$router.push('/test');
+                this.$router.push({ name: 'test', params: { 'topic': this.topicId } })
             }
         }
     }

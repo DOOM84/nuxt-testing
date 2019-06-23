@@ -43,6 +43,11 @@
 <script>
     import AppTests from '@/components/main/test'
     export default {
+        middleware: ['auth'],
+        validate ({ params }) {
+            // Must be a number
+            return /^\d+$/.test(params.topic)
+        },
         layout: 'empty',
         components: {AppTests},
         data(){

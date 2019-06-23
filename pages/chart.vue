@@ -40,6 +40,7 @@
 <script>
     import MyChart from '@/components/main/Chart'
     export default {
+        middleware: ['auth'],
         components: {MyChart},
         layout: 'empty',
         data(){

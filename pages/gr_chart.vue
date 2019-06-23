@@ -39,6 +39,7 @@
 <script>
     import GroupChart from '@/components/main/GrChart'
     export default {
+        middleware: ['auth'],
         components: {GroupChart},
         layout: 'empty',
         data(){
