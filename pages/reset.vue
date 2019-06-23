@@ -53,24 +53,31 @@
                 }
             }
         },
+        watch: {
+            errors() {
+                if(this.errors.email){
+                    this.$message.error('Такого пользователя не существует');
+                }
+            }
+        },
         methods: {
             onSubmit(){
-                this.$refs.form.validate(/*async*/ valid => {
+                this.$refs.form.validate(async valid => {
                     if(valid){
                         this.loading = true;
                         try {
                             const formData = {
                                 email: this.form.email,
                             };
-                            /*await this.$store.dispatch('auth/login', formData);
-                            this.$router.push('/')*/
-
+                            await this.$axios.post('getPass', formData);
+                            this.$message.success('Інформацію було успішно відправлено на вашу електронну адресу');
+                            this.$router.push('/');
                         }catch (e) {
-                            this.loading = false
+                            this.loading = false;
                         }
                     }
                 })
-            }
+            },
         }
     }
 </script>

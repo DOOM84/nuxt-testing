@@ -9,11 +9,11 @@
                     <span class="buttons" style="float: right; padding-bottom: 5px;">
                          <nuxt-link style="padding: 10px;" to="/chart"><el-button style="font-size: 1.5em;" size="mini" type="primary" icon="el-icon-s-data" circle></el-button></nuxt-link>
                          <el-button @click="print" style="font-size: 1.5em;" size="mini" type="primary" icon="el-icon-printer" circle></el-button>
-                         <el-button style="font-size: 1.5em;" size="mini" type="primary" icon="el-icon-message" circle></el-button>
+                         <el-button @click="send" style="font-size: 1.5em;" size="mini" type="primary" icon="el-icon-message" circle></el-button>
                     </span>
 
                 </el-card>
-                <el-card style="overflow: auto;margin-top: 0.5rem; margin-bottom: 3rem; border: none; display: flex; flex-direction: column">
+                <el-card ref="tableToSend"  style="overflow: auto;margin-top: 0.5rem; margin-bottom: 3rem; border: none; display: flex; flex-direction: column">
                     <table  cellpadding="7" width="100%" border="2" class="table"
                             v-for="(result, index) in results"
                             :key="index"
@@ -130,6 +130,16 @@
                 const Printd = process.client ? require('printd').default: '';
                 const d = new Printd();
                 d.print( this.$el, [this.cssText]);
+            },
+            async send(){
+                const toSend = this.$refs.tableToSend.$el.innerHTML;
+                try {
+                    await this.$axios.post('sendTable', {table: toSend});
+                    this.$message.success('Інформацію було успішно відправлено на вашу електронну адресу');
+                    this.$router.push('/');
+                }catch (e) {
+
+                }
             },
         }
     }

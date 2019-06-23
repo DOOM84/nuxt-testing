@@ -15,7 +15,12 @@
 <script>
   import AppNavigation from '@/components/main/Navigation'
   export default {
-    components: {AppNavigation}
+    components: {AppNavigation},
+    /*watch: {
+      $route () {
+        console.log('route changed', this.$auth.getToken('local'))
+      }
+    }*/
   }
 </script>
 

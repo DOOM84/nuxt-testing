@@ -14,15 +14,14 @@
                                 >
                                 </el-option>
                             </el-select><br><br>
-                    <nuxt-link style="color: white; text-decoration: none;" to="/test">
                         <el-button
+                                @click="toTest"
                                 type="success"
                                 round
                                 :disabled="!value"
                         >
                             Go to the testing
                         </el-button>
-                    </nuxt-link>
                             <!--<el-button
                                     type="success"
                                     round
@@ -56,6 +55,11 @@
                     }
                 ],
                 value: ''
+            }
+        },
+        methods: {
+            toTest(){
+                this.$router.push('/test');
             }
         }
     }

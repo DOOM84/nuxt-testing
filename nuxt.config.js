@@ -31,7 +31,9 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    '@/plugins/globals'
+    '@/plugins/globals',
+    '@/plugins/mixins/validation.js',
+    '@/plugins/axios'
   ],
   /*
   ** Nuxt.js modules
@@ -39,13 +41,40 @@ export default {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
+    '@nuxtjs/auth'
   ],
+
+  auth: {
+    strategies: {
+      local: {
+        endpoints: {
+          login: {
+            url: '/auth/login',
+            method: 'post',
+            propertyName: 'meta.token'
+          },
+          user: {
+            url: '/auth/me',
+            method: 'get',
+            propertyName: 'data'
+          },
+          logout: {
+            url: '/auth/logout',
+            method: 'post'
+          }
+        }
+      }
+    }
+
+  },
+
+  axios: {
+    baseURL: 'http://btest.loc/api/'
+  },
   /*
   ** Axios module configuration
   ** See https://axios.nuxtjs.org/options
   */
-  axios: {
-  },
   /*
   ** Build configuration
   */

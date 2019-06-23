@@ -81,9 +81,16 @@
                 }
             }
         },
+        watch: {
+            errors() {
+                if(this.errors.email){
+                    this.$message.error('Введенные данные неверны');
+                }
+            }
+        },
         methods: {
             onSubmit(){
-                this.$refs.form.validate(/*async*/ valid => {
+                this.$refs.form.validate(async valid => {
                     if(valid){
                         this.loading = true;
                         try {
@@ -93,6 +100,8 @@
                             };
                             /*await this.$store.dispatch('auth/login', formData);
                             this.$router.push('/')*/
+                            await this.$auth.loginWith('local', {data: formData});
+                            this.$router.push('/');
 
                         }catch (e) {
                             this.loading = false
@@ -100,6 +109,8 @@
                     }
                 })
             }
+
+
         }
     }
 </script>

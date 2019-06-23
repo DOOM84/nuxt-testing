@@ -11,6 +11,9 @@
                             @submit.native.prevent="onSubmit"
                     >
                         <h2>Регистрация</h2><br>
+                        <el-form-item prop="name">
+                            <el-input type="text" placeholder="Full Name" v-model="form.name"></el-input>
+                        </el-form-item>
                         <el-form-item prop="email">
                             <el-input type="email" placeholder="Email" v-model="form.email"></el-input>
                         </el-form-item>
@@ -65,17 +68,23 @@
 </template>
 
 <script>
+    //import { mapState } from 'vuex';
     export default {
         data() {
             return {
                 loading: false,
                 form: {
+                    name: '',
                     email: '',
                     group: '',
                     password: '',
                     password_confirmation: ''
                 },
                 rules: {
+                    name: [
+                        {required: true, message: 'Введите Ваше полное имя', trigger: 'blur'},
+                        {min: 3, message: 'Ваше полное имя должно быть не менее 3 сиволов', trigger: 'blur'},
+                    ],
                     email: [
                         {required: true, message: 'Введите Email', trigger: 'blur'},
                         {type: 'email', message: 'Введите корректный Email адрес', trigger: ['blur', 'change']}
@@ -93,42 +102,64 @@
                     ],
                 },
                 options: [{
-                    value: 'Option1',
+                    value: '1',
                     label: 'Option1'
                 }, {
-                    value: 'Option2',
+                    value: '2',
                     label: 'Option2',
                 }, {
-                    value: 'Option3',
+                    value: '3',
                     label: 'Option3'
                 }, {
-                    value: 'Option4',
+                    value: '4',
                     label: 'Option4'
                 }, {
-                    value: 'Option5',
+                    value: '5',
                     label: 'Option5'
                 }],
                 //value: ''
             }
         },
+        //computed: mapState(['validation/errors']),
+
+        watch: {
+            errors() {
+                if(this.errors.email){
+                    this.$message.error('Пользователь с таким Email адресом уже существует');
+                }
+            }
+        },
+
         methods: {
             onSubmit() {
-                this.$refs.form.validate(/*async*/ valid => {
+                this.$refs.form.validate(async valid => {
                     if (valid) {
                         this.loading = true;
                         try {
                             const formData = {
+                                name: this.form.name,
                                 email: this.form.email,
-                                group: this.form.group,
+                                group_id: this.form.group,
                                 password: this.form.password,
                                 password_confirmation: this.form.password_confirmation
                             };
+
                             /*await this.$store.dispatch('auth/login', formData);
                             this.$router.push('/')*/
 
-                        } catch (e) {
-                            this.loading = false
-                        }
+                                await this.$axios.post('auth/register', formData);
+
+                                await this.$auth.loginWith('local', {
+                                    data: {
+                                        email: formData.email,
+                                        password: formData.password
+                                    },
+                                });
+                                this.$router.push('/')
+                            } catch (e) {
+                               // console.log(e.response.data.message);
+                                this.loading = false
+                            }
                     }
                 })
             },
