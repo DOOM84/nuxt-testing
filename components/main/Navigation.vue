@@ -12,6 +12,11 @@
 
             <el-menu-item v-if="$auth.loggedIn"> {{$auth.user.name}}</el-menu-item>
 
+            <template v-if="started">
+                <el-menu-item><i style="color: white" class="el-icon-check"></i>: {{answers}}</el-menu-item>
+                <el-menu-item><i style="color: white" class="el-icon-timer"></i>{{minutes}} : {{seconds}}</el-menu-item>
+            </template>
+
                 <el-menu
                         mode="horizontal"
                         class="cont-right"
@@ -24,7 +29,7 @@
             <template v-if="$auth.loggedIn">
                     <el-submenu index="1">
                         <template slot="title">Stats</template>
-                        <el-menu-item>Level: Intermediate</el-menu-item>
+                        <el-menu-item>Level: {{$auth.user.level}}</el-menu-item>
                         <el-menu-item index="/stats">My statistics</el-menu-item>
                         <el-menu-item index="/group">My group statistics</el-menu-item>
                     </el-submenu>
@@ -52,10 +57,30 @@
 
 <script>
     export default {
+        computed: {
+            answers(){
+                return this.$store.getters['test/answers'].length
+            },
+            minutes(){
+                return this.$store.getters['timer/minutes']
+            },
+            seconds(){
+                return this.$store.getters['timer/seconds']
+            },
+            started(){
+                return this.$store.getters['timer/started']
+            },
+        },
         methods: {
             logout(){
                 this.$auth.logout()
-            }
+            },
+
+            /* async fetchUser(){
+                 await this.$auth.fetchUser()
+            }*/
+
+
         }
     }
 </script>
@@ -90,7 +115,5 @@
         font-size: 14px;
         text-decoration: none;
     }
-
-
 
 </style>

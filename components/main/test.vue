@@ -6,7 +6,7 @@
             <el-radio v-for="answer in task.answers"
                       :label="answer.id"
                       :key="answer.id"
-                      @change="clickHandler(answer.id)">
+                      @change="clickHandler(answer.id, index)">
                 {{answer.body}}
             </el-radio>
         </el-radio-group>
@@ -18,12 +18,13 @@
         props: ['task', 'index', 'curcolor'],
         data(){
             return {
-                radio: ''
+                radio: '',
+                //answ: []
             }
         },
         methods: {
-            clickHandler(answer){
-                console.log(answer);
+            clickHandler(answer, index){
+               this.$store.commit('test/SET_ANSWERS', {answer, index})
             }
         }
     }

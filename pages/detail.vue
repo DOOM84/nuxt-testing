@@ -3,9 +3,9 @@
 
         <el-col :xs="24" :sm="24" :md="16" :lg="16">
 
-            <div class="content " style=" margin-left: 20px; margin-right: 20px;display: flex; flex-direction: column">
+            <div class="content " style="min-height: 90vh; margin-left: 20px; margin-right: 20px;display: flex; flex-direction: column">
                 <el-card style="overflow: auto; width: 100%; height: 100%; margin-top: 3rem;  background: #6F42C1; border: none; color: white">
-                    <h1 style="padding-bottom: 1rem;">Test: Present Tenses, Level: Intermediate</h1>
+                    <h1 style="padding-bottom: 1rem;">Test: {{$route.params.topic}} ({{$route.params.id}}), Level: levelName</h1>
 
                 </el-card>
                 <el-card style="overflow: auto;margin-top: 0.5rem; margin-bottom: 3rem; border: none; display: flex; flex-direction: column">
@@ -67,6 +67,10 @@
 <script>
     export default {
         middleware: ['auth'],
+        validate ({ params }) {
+            return /^([a-zA-Z0-9 _-]+)$/.test(params.topic) && /^\d+$/.test(params.id);
+
+        },
         layout: 'empty',
         data(){
           return {

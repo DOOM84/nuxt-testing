@@ -102,7 +102,7 @@
                             /*await this.$store.dispatch('auth/login', formData);
                             this.$router.push('/')*/
                             await this.$auth.loginWith('local', {data: formData});
-                            this.$router.push('/');
+                            //this.$router.push('/');
 
                         }catch (e) {
                             this.loading = false
@@ -110,8 +110,6 @@
                     }
                 })
             }
-
-
         }
     }
 </script>

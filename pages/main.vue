@@ -4,21 +4,19 @@
             <div class="content flex-center" style=" margin-left: 20px; margin-right: 20px;display: flex; flex-direction: column">
                 <el-card style="max-width: 500px; width: 100%; margin-top: 5rem;">
 
-
-                            <el-select style="max-width: 500px; width: 100%;" v-model="topicId" placeholder="Choose topic">
-                                <el-option
-                                        v-for="topic in topics"
-                                        :key="topic.value"
-                                        :label="topic.name"
-                                        :value="topic.value"
-                                >
-                                </el-option>
-                            </el-select><br><br>
+                    <el-select style="max-width: 500px; width: 100%;" v-model="value" placeholder="Choose topic" value-key="id">
+                        <el-option
+                                v-for="topic in topics"
+                                :label="topic.name"
+                                :key="topic.id"
+                                :value="topic">
+                        </el-option>
+                    </el-select> <br><br>
                         <el-button
                                 @click="toTest"
                                 type="success"
                                 round
-                                :disabled="!topicId"
+                                :disabled="!value.name"
                         >
                             <h3>Go to the testing</h3>
                         </el-button>
@@ -38,22 +36,31 @@
         middleware: ['auth'],
         data(){
             return {
-                topics:[ {
-                    name: 'Study guide',
-                    value: 1
-                },
-                    {
-                        name: 'Present tenses',
-                        value: 2
-                    }
-                ],
-                topicId: ''
+                topics: '',
+                value: ''
+            }
+        },
+        async asyncData({store}) {
+           /* const {data} = await store.dispatch('topic/fetch');
+            data.unshift({ id: 0, name: 'Study guide' });
+            return {
+                topics: data
+            }*/
+            try {
+                const {data} = await store.dispatch('topic/fetch');
+                data.unshift({ id: 0, name: 'Study guide' });
+                return {
+                    topics: data
+                }
+            } catch (error) {
+                if(error.response.status === 401){
+                    return $nuxt.$router.replace('/login');
+                }
             }
         },
         methods: {
             toTest(){
-                //this.$router.push('/test');
-                this.$router.push({ name: 'test', params: { 'topic': this.topicId } })
+                this.$router.push({ name: 'test', params: { 'topic': this.value, 'curLevel': this.$auth.user.level} })
             }
         }
     }

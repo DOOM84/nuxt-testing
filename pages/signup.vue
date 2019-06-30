@@ -118,11 +118,8 @@
                     value: '5',
                     label: 'Option5'
                 }],
-                //value: ''
             }
         },
-        //computed: mapState(['validation/errors']),
-
         watch: {
             errors() {
                 if(this.errors.email){

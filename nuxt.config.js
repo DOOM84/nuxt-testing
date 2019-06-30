@@ -33,7 +33,10 @@ export default {
   plugins: [
     '@/plugins/globals',
     '@/plugins/mixins/validation.js',
-    '@/plugins/axios'
+    '@/plugins/mixins/random.js',
+    '@/plugins/axios',
+    { src: '~/plugins/vue-timers', mode: 'client' },
+    { src: '~/plugins/back-to-top', mode: 'client' },
   ],
   /*
   ** Nuxt.js modules
