@@ -4,8 +4,10 @@
         <el-col :xs="24" :sm="24" :md="16" :lg="16">
             <div class="content" style="min-height: 90vh; margin-left: 20px; margin-right: 20px;display: flex; flex-direction: column">
                 <el-card style="overflow: auto; width: 100%; height: 100%; padding-bottom: 1rem; margin-top: 5rem; background: #6F42C1; border: none; color: white">
-                    <h1 style="padding-bottom: 1rem;">Level: {{$route.params.curLevel}}. Topic: {{$route.params.topic.name}}</h1>
-                    <h1 v-if="result" style="padding-bottom: 1rem;">Your result: {{result}}</h1>
+                    <h1 style="padding-bottom: 1rem;">
+                        {{getLang(location, 'level')}} {{$route.params.curLevel}}. {{getLang(location, 'topic')}}: {{$route.params.topic.name}}
+                    </h1>
+                    <h1 v-if="result" style="padding-bottom: 1rem;">{{getLang(location, 'result')}} {{result}}</h1>
                     <div v-if="started"
                          style="float: right; margin-bottom: 2rem;"
                          @click="changeCol(color.name)"
@@ -30,7 +32,7 @@
                     />
                     <div>
                         <el-button :disabled="!answers.length"  @click="askTofinish" style="width: 100%; margin-top: 2rem; margin-bottom: 2rem;" type="success" round>
-                            Send
+                            {{getLang(location, 'send')}}
                         </el-button>
                     </div>
                 </template>
@@ -38,13 +40,15 @@
                 <template v-if="repeats">
                     <el-card class="box-card" style="width: 100%;">
                         <div slot="header" class="clearfix">
-                            <span>You need to repeat the following topics:</span>
+                            <span>{{getLang(location, 'repeat')}}</span>
                         </div>
                         <div v-for="(repeat, index) in repeats" :key="index" class="text item">
                             {{repeat}}
                         </div>
                         <div>
-                            <el-button @click="showDet" style="width: 100%;" type="primary">More details</el-button>
+                            <el-button @click="showDet" style="width: 100%;" type="primary">
+                                {{getLang(location, 'detail')}}
+                            </el-button>
                         </div>
                     </el-card>
                 </template>
@@ -63,6 +67,11 @@
         },
         layout: 'empty',
         components: {AppTests, AppTimer},
+        head(){
+            return {
+                title: this.getLang(this.location, 'level') + ' ' + this.$route.params.curLevel + ' ' + this.getLang(this.location, 'topic') + ': ' + this.$route.params.topic.name
+            }
+        },
         data(){
             return {
                 showTest: true,
@@ -71,7 +80,7 @@
                 resId: null,
                 start: null,
                 tasks: '',
-                radio: '',
+               // radio: '',
                 curcolor: '',
                 colors: [
                     {name: 'rgb(202, 199, 216)'},
@@ -154,10 +163,9 @@
                     this.result = data.status;
                     this.resId = data.resId;
                 } catch (error) {
-                    console.log(error);
-                    /*if(error.response.status === 401){
+                    if(error.response.status === 401){
                         return $nuxt.$router.replace('/login');
-                    }*/
+                    }
                 }
             },
             showDet(){

@@ -32,7 +32,6 @@
                     this.min = 0;
                     this.sec = ('0' + 0).slice(-2);
                     this.$timer.stop('log');
-                    //this.$message.success('Finished! Thank You!')
                     this.$emit('finished', 'Time is over');
                 }
                 this.$store.commit('timer/SET_TIME', {sec: this.sec, min: this.min});
@@ -85,7 +84,6 @@
             },
             answers(){
                 if(this.answers.length === this.curLength){return false}
-
                 const terms = [3,4,5,7,10,18,20,49];
                 if(terms.includes(this.answers.length)){
                     this.getMsg(this.answers)
@@ -104,8 +102,8 @@
         },
         beforeDestroy() {
             this.$timer.stop('log');
-            this.$store.commit('timer/SET_FINISH');
-            this.$store.commit('test/CLEAR_ANSWERS')
+            this.$store.dispatch('timer/setFinish');
+            this.$store.dispatch('test/clearAnswers')
         },
     }
 </script>

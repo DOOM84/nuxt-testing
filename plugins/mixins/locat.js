@@ -1,17 +1,16 @@
 import Vue from 'vue';
 import {mapGetters} from 'vuex';
 
-const User = {
+const Location = {
     install(Vue, options) {
         Vue.mixin({
             computed: {
                 ...mapGetters({
-                    authenticated : 'auth/authenticated',
-                    user : 'auth/user'
+                    location : 'auth/location',
                 })
             }
         })
     }
 };
 
-Vue.use(User);
+Vue.use(Location);

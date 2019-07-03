@@ -33,8 +33,10 @@ export default {
   plugins: [
     '@/plugins/globals',
     '@/plugins/mixins/validation.js',
+    '@/plugins/mixins/locat.js',
     '@/plugins/mixins/random.js',
     '@/plugins/axios',
+    '@/plugins/mixins/lang.js',
     { src: '~/plugins/vue-timers', mode: 'client' },
     { src: '~/plugins/back-to-top', mode: 'client' },
   ],
@@ -44,7 +46,8 @@ export default {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
-    '@nuxtjs/auth'
+    '@nuxtjs/auth',
+    ['cookie-universal-nuxt', { alias: 'cookiz', parseJSON: false }]
   ],
 
   auth: {

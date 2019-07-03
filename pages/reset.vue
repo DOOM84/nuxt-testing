@@ -9,9 +9,12 @@
                         ref="form"
                         @submit.native.prevent="onSubmit"
                 >
-                    <h2>Сброс пароля</h2><br>
+                    <h2>{{getLang(location, 'resetPas')}}</h2><br>
                     <el-form-item prop="email">
-                        <el-input type="email" placeholder="Email" v-model="form.email"></el-input>
+                        <el-input type="email"
+                                  :placeholder="getLang(location, 'email')"
+                                  v-model="form.email">
+                        </el-input>
                     </el-form-item>
                     <el-form-item>
                         <el-button
@@ -20,36 +23,36 @@
                                 :loading="loading"
                                 round
                         >
-                            Сбросить пароль
+                            {{getLang(location, 'resetPas')}}
                         </el-button>
 
                     </el-form-item>
                 </el-form>
-
                 </el-card>
-
             </div>
         </el-col>
-
-
     </el-row>
-
-
 </template>
 
 <script>
     export default {
         middleware: ['guest'],
+        head(){
+            return {
+                title: this.getLang(this.location, 'resetPas')
+            }
+        },
         data() {
             return {
                 loading: false,
                 form: {
                     email: '',
+                    loc: ''
                 },
                 rules: {
                     email: [
-                        { required: true, message: 'Введите Email', trigger: 'blur' },
-                        { type: 'email', message: 'Введите корректный Email адрес', trigger: ['blur', 'change'] }
+                        { required: true, message: this.getLang(this.$nuxt.location, 'emailReq'), trigger: 'blur' },
+                        { type: 'email', message: this.getLang(this.$nuxt.location, 'emailEm'), trigger: ['blur', 'change'] }
                     ]
                 }
             }
@@ -57,7 +60,7 @@
         watch: {
             errors() {
                 if(this.errors.email){
-                    this.$message.error('Такого пользователя не существует');
+                    this.$message.error(this.getLang(this.location, 'failed'));
                 }
             }
         },
@@ -69,9 +72,10 @@
                         try {
                             const formData = {
                                 email: this.form.email,
+                                loc: this.location
                             };
                             await this.$axios.post('getPass', formData);
-                            this.$message.success('Інформацію було успішно відправлено на вашу електронну адресу');
+                            this.$message.success(this.getLang(this.location, 'sentMail'));
                             this.$router.push('/');
                         }catch (e) {
                             this.loading = false;

@@ -8,7 +8,7 @@
     </el-main>
     <el-footer style="background: #545c64; align-items: center;
     display: flex;
-    justify-content: center; color: white">Testing System &copy; {{ new Date().getFullYear() }}</el-footer>
+    justify-content: center; color: white">{{getLang(location, 'app_name')}} &copy; {{ new Date().getFullYear() }}</el-footer>
   </el-container>
 </template>
 

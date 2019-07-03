@@ -21,7 +21,9 @@ export const mutations = {
 };
 
 export const actions = {
-
+    setFinish({commit}){
+        commit('SET_FINISH')
+    },
 };
 
 export const getters = {

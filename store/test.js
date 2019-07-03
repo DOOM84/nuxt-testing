@@ -35,7 +35,13 @@ export const actions = {
         } catch (error) {
             throw error;
         }
-    }
+    },
+
+    clearAnswers({commit}){
+        commit('CLEAR_ANSWERS')
+    },
+
+
 };
 
 export const getters = {

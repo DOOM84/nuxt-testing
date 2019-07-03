@@ -4,7 +4,10 @@
             <div class="content flex-center" style=" margin-left: 20px; margin-right: 20px;display: flex; flex-direction: column">
                 <el-card style="max-width: 500px; width: 100%; margin-top: 5rem;">
 
-                    <el-select style="max-width: 500px; width: 100%;" v-model="value" placeholder="Choose topic" value-key="id">
+                    <el-select style="max-width: 500px; width: 100%;"
+                               v-model="value"
+                               :placeholder="getLang(location, 'choose')"
+                               value-key="id">
                         <el-option
                                 v-for="topic in topics"
                                 :label="topic.name"
@@ -18,22 +21,23 @@
                                 round
                                 :disabled="!value.name"
                         >
-                            <h3>Go to the testing</h3>
+                            <h3>{{getLang(location, 'toTest')}}</h3>
                         </el-button>
                 </el-card>
 
             </div>
         </el-col>
-
-
     </el-row>
-
-
 </template>
 
 <script>
     export default {
         middleware: ['auth'],
+        head(){
+            return {
+                title: this.getLang(this.location, 'toTest')
+            }
+        },
         data(){
             return {
                 topics: '',
@@ -41,11 +45,6 @@
             }
         },
         async asyncData({store}) {
-           /* const {data} = await store.dispatch('topic/fetch');
-            data.unshift({ id: 0, name: 'Study guide' });
-            return {
-                topics: data
-            }*/
             try {
                 const {data} = await store.dispatch('topic/fetch');
                 data.unshift({ id: 0, name: 'Study guide' });
@@ -54,7 +53,14 @@
                 }
             } catch (error) {
                 if(error.response.status === 401){
-                    return $nuxt.$router.replace('/login');
+                   return $nuxt.$router.replace('/login');
+                }
+            }
+        },
+        watch: {
+            errors() {
+                if(this.errors.access){
+                    this.$message.error(this.getLang(this.location, 'attempts'));
                 }
             }
         },

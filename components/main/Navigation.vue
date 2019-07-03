@@ -7,8 +7,7 @@
                 router
                 style="z-index: 100; position: fixed; width: 100%;"
         >
-
-            <el-menu-item index="/"><h2>Testing System</h2></el-menu-item>
+            <el-menu-item index="/"><h2>{{getLang(location, 'app_name')}}</h2></el-menu-item>
 
             <el-menu-item v-if="$auth.loggedIn"> {{$auth.user.name}}</el-menu-item>
 
@@ -28,31 +27,26 @@
                         >
             <template v-if="$auth.loggedIn">
                     <el-submenu index="1">
-                        <template slot="title">Stats</template>
-                        <el-menu-item>Level: {{$auth.user.level}}</el-menu-item>
-                        <el-menu-item index="/stats">My statistics</el-menu-item>
-                        <el-menu-item index="/group">My group statistics</el-menu-item>
+                        <template slot="title">{{getLang(location, 'stats')}}</template>
+                        <el-menu-item>{{getLang(location, 'level')}} {{$auth.user.level}}</el-menu-item>
+                        <el-menu-item index="/stats">{{getLang(location, 'myStats')}}</el-menu-item>
+                        <el-menu-item index="/group">{{getLang(location, 'groupStats')}}</el-menu-item>
                     </el-submenu>
                 <div class="menu-item">
-                    <a  href="#" @click.prevent="logout">Logout</a>
+                    <a  href="#" @click.prevent="logout">{{getLang(location, 'logOut')}}</a>
                 </div>
                 </template>
 
              <template v-else>
-                    <el-menu-item index="/login">Login</el-menu-item>
-                    <el-menu-item index="/signup">Sign up</el-menu-item>
+                    <el-menu-item index="/login">{{getLang(location, 'login')}}</el-menu-item>
+                    <el-menu-item index="/signup">{{getLang(location, 'register')}}</el-menu-item>
                     </template>
 
-                    <img style="padding-top: 5px; margin-left: 20px; padding-right: 5px;" height="30px" src="/uk.png">
-
-
-                    <img style="padding-top: 5px; margin-right: 20px;" height="30px" src="/ukr.png">
+                    <img @click="setLang('en')" style="padding-top: 5px; margin-left: 20px; padding-right: 5px;" height="30px" src="/uk.png">
+                    <img @click="setLang('ua')" style="padding-top: 5px; margin-right: 20px;" height="30px" src="/ukr.png">
 
              </el-menu>
-
         </el-menu>
-
-
 </template>
 
 <script>
@@ -75,12 +69,12 @@
             logout(){
                 this.$auth.logout()
             },
-
-            /* async fetchUser(){
-                 await this.$auth.fetchUser()
-            }*/
-
-
+            setLang(lang){
+                this.$cookiz.set('lang', lang, {
+                    maxAge: 60 * 60 * 24 * 30
+                });
+                this.$store.dispatch('auth/setLocation', lang)
+             }
         }
     }
 </script>

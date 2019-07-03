@@ -2,20 +2,20 @@
     <el-row type="flex" justify="center">
         <el-col :xs="24" :sm="18" :md="12" :lg="10">
             <div class="content flex-center" style=" margin-left: 20px; margin-right: 20px;display: flex; flex-direction: column">
-                <el-card style="max-width: 500px; width: 100%">
+                <el-card style="overflow: auto; max-width: 500px; width: 100%">
                 <el-form
                         :model="form"
                         :rules="rules"
                         ref="form"
                          @submit.native.prevent="onSubmit"
                 >
-                    <h2>Вход</h2><br>
+                    <h2>{{getLang(location, 'login')}}</h2><br>
                     <el-form-item prop="email">
-                        <el-input type="email" placeholder="Email" v-model="form.email"></el-input>
+                        <el-input type="email" :placeholder="getLang(location, 'email')" v-model="form.email"></el-input>
                     </el-form-item>
                     <div class="mb2">
                     <el-form-item prop="password">
-                        <el-input placeholder="Password" type="password" v-model="form.password"></el-input>
+                        <el-input :placeholder="getLang(location, 'password')" type="password" v-model="form.password"></el-input>
                     </el-form-item>
                     </div>
                     <el-form-item>
@@ -25,7 +25,7 @@
                                 round
                                 :loading="loading"
                         >
-                            Войти
+                            {{getLang(location, 'login')}}
                         </el-button>
 
                             <nuxt-link style="color: white; text-decoration: none;" to="/signup">
@@ -34,7 +34,7 @@
                                         round
 
                                 >
-                                Регистрация
+                                    {{getLang(location, 'register')}}
                                 </el-button>
                             </nuxt-link>
 
@@ -42,7 +42,7 @@
                             <el-button
                                     round
                             >
-                                Забыл пароль
+                                {{getLang(location, 'forgot')}}
                             </el-button>
                         </nuxt-link>
 
@@ -63,6 +63,11 @@
 <script>
     export default {
         middleware: ['guest'],
+        head(){
+            return {
+                title: this.getLang(this.location, 'login')
+            }
+        },
         data() {
             return {
                 loading: false,
@@ -70,14 +75,15 @@
                     email: '',
                     password: ''
                 },
+                llc: 'en',
                 rules: {
                     email: [
-                        { required: true, message: 'Введите Email', trigger: 'blur' },
-                        { type: 'email', message: 'Введите корректный Email адрес', trigger: ['blur', 'change'] }
+                        { required: true, message: this.getLang(this.$nuxt.location, 'emailReq'), trigger: 'blur' },
+                        { type: 'email', message: this.getLang(this.$nuxt.location, 'emailEm'), trigger: ['blur', 'change'] }
                     ],
                     password: [
-                        { required: true, message: 'Введите ваш пароль', trigger: 'blur' },
-                        {min: 6, message: 'Пароль должен быть не менее 6 сиволов', trigger: 'blur'}
+                        { required: true, message: this.getLang(this.$nuxt.location, 'passwordReq'), trigger: 'blur' },
+                        {min: 6, message: this.getLang(this.$nuxt.location, 'passwordMin'), trigger: 'blur'}
                     ]
                 }
             }
@@ -85,7 +91,7 @@
         watch: {
             errors() {
                 if(this.errors.email){
-                    this.$message.error('Введенные данные неверны');
+                    this.$message.error(this.getLang(this.location, 'failed'));
                 }
             }
         },
