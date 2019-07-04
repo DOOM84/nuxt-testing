@@ -1,10 +1,9 @@
 <template>
     <div class="flex-center error-layout">
         <div class="error-content">
-            <h1 class="error-title">Ошибка 404</h1>
+            <h1 class="error-title">{{getLang(location, '404')}}</h1>
             <nuxt-link to="/" style="color: white">
-                Вернуться на главную
-
+                {{getLang(location, 'return')}}
             </nuxt-link>
         </div>
 

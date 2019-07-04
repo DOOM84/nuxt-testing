@@ -87,6 +87,7 @@ export default {
         'variants': 'Correct answers',
         'link': 'Link',
         'interface': 'Interface:',
+        'return' : 'Return to the main page'
     },
     ua: {
         'app_name': 'Testing system',
@@ -177,5 +178,6 @@ export default {
         'variants': 'Варіанти відповіді',
         'link': 'Посилання',
         'interface': 'Інтерфейс:',
+        'return' : 'Повернутися на головну сторінку'
     }
 }
