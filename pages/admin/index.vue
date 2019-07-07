@@ -1,13 +1,41 @@
 <template>
-    <div style="text-align: center">
-        Головна
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A atque aut autem beatae, commodi consequuntur delectus dolor eaque eligendi error facere fugit id incidunt itaque iure libero nisi officiis omnis possimus quae quo repellendus similique sunt, ut veniam vero voluptatem! Consequuntur dolor ea quaerat quisquam quo quos soluta velit. Consectetur dolorem ducimus quo? Animi aperiam architecto assumenda at, ea rem rerum. Aliquid pariatur provident quae quam quod saepe. Adipisci alias atque cum magni necessitatibus? Delectus dicta ducimus eos et magni, minima molestiae neque obcaecati, officiis perferendis quis quo sint veritatis voluptas voluptates! Animi blanditiis consequatur dicta dolor doloribus, eaque excepturi harum ipsa itaque laborum magni nisi numquam obcaecati placeat porro quis quo sequi, tempora totam voluptas? Architecto asperiores, aspernatur aut autem consequatur corporis culpa, deleniti dignissimos dolorem enim eos exercitationem, facere labore laboriosam laborum necessitatibus placeat porro quibusdam quisquam quos reiciendis rerum sapiente sed sint sit suscipit tempore temporibus velit voluptates voluptatibus? Eligendi, iure, omnis. Assumenda at commodi corporis culpa cum, doloremque dolorum eligendi eos excepturi fugiat fugit harum itaque laudantium magnam obcaecati officiis omnis pariatur porro, quam quisquam rem similique suscipit tenetur vel, vero voluptas voluptatem. Beatae harum illum in possimus reiciendis saepe sint veniam! Accusamus accusantium, alias aliquid architecto assumenda debitis deserunt dolore dolorem ducimus eaque earum eius enim eum exercitationem facere in incidunt officiis pariatur, quod repudiandae soluta suscipit tempora tempore. Alias consectetur corporis deleniti dolor dolore dolores ea eius eligendi enim eum eveniet minus molestias nesciunt nobis, officiis, possimus quia quis sed suscipit temporibus ullam, unde voluptatibus. Alias aliquid aut autem deleniti, enim est hic libero magnam necessitatibus nobis nostrum, optio possimus quae quo rem? Aut dicta hic mollitia quaerat qui. Blanditiis commodi consequuntur culpa dicta ducimus ea explicabo facere illum impedit inventore ipsa ipsam labore libero maxime minus neque nihil odit, qui quia quidem repellendus reprehenderit rerum tempore veritatis voluptas. Ad debitis dolore dolores dolorum esse est, facere, fuga in, iste minus omnis pariatur porro provident quaerat quam quibusdam repellat repudiandae sapiente voluptatem voluptatum? Accusantium, beatae eos est exercitationem fugit laborum nisi quibusdam ratione? Alias architecto consequatur deserunt dolores ducimus fuga in, nobis non perferendis quaerat quibusdam ut! A accusamus alias animi, consectetur consequuntur culpa dolor dolore ducimus esse illo illum ipsum iusto laboriosam magni maxime minima modi nihil non odit officia porro provident quae quasi quisquam quod, recusandae, rerum sequi sunt unde velit veniam veritatis vitae voluptatum? Ab beatae eaque earum eveniet excepturi iusto minus perferendis, quod ullam! Alias aliquid aut earum explicabo repellat unde. A aliquid aut, commodi debitis deleniti dolor dolore expedita explicabo facere fugiat illo inventore labore libero natus nesciunt nobis numquam obcaecati odit pariatur possimus quibusdam quidem quod repellat sint sunt ullam voluptatibus! Accusamus, dolore eligendi facere, fugiat hic mollitia nobis numquam officiis omnis possimus quo quod recusandae rem sequi veniam! Aliquid aut consequuntur cum delectus dolore, harum illo ipsa laboriosam nisi provident rem repellendus reprehenderit voluptas? Animi ducimus omnis rerum vitae voluptatibus! Culpa impedit, voluptate. Atque eum illo iusto magnam repellat! Atque magnam minus quam qui ratione rem repellendus, sapiente. Ab animi blanditiis debitis deleniti esse, eum nesciunt nostrum porro quas repellat tempore voluptate voluptatibus voluptatum. A dolores earum esse eum, facere facilis fugit iusto laboriosam libero magnam magni natus necessitatibus omnis quas quibusdam recusandae repellat soluta sunt suscipit velit. Aliquam aperiam asperiores assumenda consequuntur cumque explicabo molestias mollitia obcaecati recusandae sapiente! Ad animi asperiores aut, deleniti dignissimos dolorem dolorum eius esse eum expedita fuga illum laborum laudantium modi necessitatibus nesciunt odio, officiis quibusdam reprehenderit sequi tempore totam vel, velit? Dolorum enim error itaque laudantium nisi quidem totam vel. Animi consequatur laboriosam odio porro, quidem quod rem repellat. A ab ad, alias aspernatur consequuntur corporis dolorem dolorum eaque enim error harum illo iste nobis pariatur quam, reiciendis suscipit tempore ut veniam voluptates! Amet architecto at consequuntur corporis cumque dolorum eligendi enim eos eum ex expedita facere fugiat harum id impedit in laboriosam minima modi necessitatibus neque nesciunt nihil, nisi perferendis quae quam quas quasi qui repellat rerum sed soluta suscipit tenetur ullam unde vero, voluptate voluptates! Commodi dignissimos, eaque enim ipsa libero placeat reprehenderit voluptatem. A, assumenda corporis cumque delectus eligendi fuga fugit illum incidunt ipsam, ipsum neque obcaecati odio optio perspiciatis porro quae, quia quidem rem vitae voluptate. Consectetur delectus esse est, inventore laboriosam minus nesciunt officia quas, recusandae reiciendis sapiente sed vel. Ex laboriosam laudantium voluptates. Adipisci aliquam architecto consequuntur cumque dolor dolore esse est facere fugit incidunt inventore laboriosam, natus neque omnis perferendis quo soluta tempore totam ullam unde vel veniam vero voluptatibus. Ex explicabo, harum minima molestiae possimus ratione vel velit? Accusamus amet, consectetur debitis dolores ea enim expedita impedit in ipsum laboriosam molestias officiis pariatur perspiciatis porro recusandae rem repellendus, saepe tempore vel voluptate. Animi, enim provident. Debitis delectus doloribus dolorum ducimus eveniet id impedit laboriosam modi nihil, placeat provident quia, tempora tempore. Ducimus eum laboriosam nobis quasi voluptatibus. Accusamus ex illo quae reiciendis repudiandae, voluptatibus? Ab dignissimos doloremque excepturi itaque maxime obcaecati optio quidem, saepe voluptatem! Adipisci alias cum eligendi id magni nisi quos vel. Eum eveniet ex harum, nobis odio officiis reiciendis sunt ut? Ab ad alias asperiores cum earum eius eum fuga fugiat hic id, illum ipsa laborum nam nemo neque nulla odio possimus quidem, quis quod ratione reprehenderit suscipit totam, veniam voluptates. Amet aperiam beatae consectetur cupiditate debitis dolor ea enim et eum eveniet id ipsum laudantium maiores modi nemo nesciunt numquam pariatur, provident quidem rerum saepe ut vero voluptate voluptatem voluptatum! Alias architecto at consectetur dicta ducimus, eveniet exercitationem, incidunt molestias nihil nisi numquam perferendis quam recusandae repudiandae rerum saepe sequi tenetur voluptas? Accusantium, animi quasi. Commodi, corporis, provident. Ab animi, assumenda consequatur eius fugiat impedit libero nobis non possimus quae quisquam reprehenderit repudiandae, tempore! Dolorum ducimus eos ex illo laborum magni, necessitatibus quos rerum! Ad aliquid cupiditate dicta distinctio doloremque enim est eum excepturi exercitationem, fugiat id ipsam ipsum laboriosam maiores necessitatibus, non officia quae quam quas qui quia quod reprehenderit sequi similique veritatis vitae voluptas voluptate. Accusamus aspernatur distinctio id inventore laudantium maxime ratione saepe ullam vel?</p>
+    <div style="padding: 20px;">
+        <p>Всього тестів: <strong>{{tasks}}</strong></p>
+        <p>Всего тем: <strong>{{topics}}</strong> (Доступних для проходження: <strong>{{availTopics}})</strong></p>
+        <p>Всього посилань на сторонні ресурси: <strong>{{links}}</strong></p>
+        <p>Зареєстрованих користувачів: <strong>{{users}}</strong></p>
     </div>
 </template>
 
 <script>
     export default {
-        layout: 'admin'
+        layout: 'admin',
+        data(){
+            return {
+                tasks : '',
+                topics : '',
+                availTopics : '',
+                links : '',
+                users : '',
+            }
+
+        },
+        async asyncData({store}) {
+            try {
+                const data = await store.dispatch('adminHome/fetch');
+                return {
+                    tasks : data.tasks,
+                    topics : data.topics,
+                    availTopics : data.availTopics,
+                    links : data.links,
+                    users : data.users
+                }
+            } catch (error) {
+                if(error.response.status === 401){
+                    return $nuxt.$router.replace('/login');
+                }
+            }
+        },
     }
 </script>
 
