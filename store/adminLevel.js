@@ -8,23 +8,23 @@ export const actions = {
 
     async index() {
         try {
-            return await this.$axios.$get('admin/topic')
+            return await this.$axios.$get('admin/level')
         } catch (error) {
             throw error;
         }
     },
 
-    async edit() {
+    async store({}, data) {
         try {
-            return await this.$axios.$get('admin/topic/edit')
+            return await this.$axios.$post('admin/level', data)
         } catch (error) {
             throw error;
         }
     },
 
-    async create({}, data) {
+    async create() {
         try {
-            return await this.$axios.$post('admin/topic', data)
+            return await this.$axios.$get('admin/level/create')
         } catch (error) {
             throw error;
         }
@@ -33,7 +33,7 @@ export const actions = {
     async update({}, data){
 
         try {
-            await this.$axios.patch(`admin/topic/${data.id}`, data)
+            await this.$axios.patch(`admin/level/${data.id}`, data)
         } catch (error) {
             throw error;
         }
@@ -42,7 +42,7 @@ export const actions = {
     async delete({}, id){
 
         try {
-            await this.$axios.$delete(`admin/topic/${id}`);
+            await this.$axios.$delete(`admin/level/${id}`);
         } catch (error) {
             throw error;
         }

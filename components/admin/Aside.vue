@@ -44,10 +44,6 @@
             <i class="el-icon-user"></i>
             <span>Статистика</span>
         </el-menu-item>
-        <el-menu-item index="/admin/logout">
-            <i class="el-icon-switch-button"></i>
-            <span>Выйти</span>
-        </el-menu-item>
 
     </el-menu>
 

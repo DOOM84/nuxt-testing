@@ -93,6 +93,9 @@
                 if(this.errors.email){
                     this.$message.error(this.getLang(this.location, 'failed'));
                 }
+                if(this.errors.blocked){
+                    this.$message.error(this.getLang(this.location, 'blocked'));
+                }
             }
         },
         methods: {

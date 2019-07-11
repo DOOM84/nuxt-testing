@@ -57,6 +57,7 @@
         layout: 'admin',
         data() {
             return {
+                levs: [],
                 controls: {
                     name: '',
                     levels: '',
@@ -106,25 +107,27 @@
 
                         const formData = {
                             name: this.controls.name,
-                            levels: this.controls.levels,
+                            levels: this.filterObj(this.controls.levels, this.levs),
                             description: this.controls.description,
                             status: this.controls.status,
                             id: this.$route.params.topic.id
                         };
-
                         try {
-                            //console.log(formData);
                             await this.$store.dispatch('adminTopic/update', formData);
-                            this.$message.success('Тема оновлена');
+                            this.$message.success('Тему оновлено');
                             this.loading = false;
                             this.$router.push('/admin/topics')
                         } catch (e) {
                             this.loading = false
                         }
-
-
                     }
                 })
+            },
+            filterObj(source, res){
+                for (let [key, value] of Object.entries(source)) {
+                    res[key] = value.id;
+                }
+                return res
             }
         }
     }

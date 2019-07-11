@@ -8,7 +8,7 @@ export const actions = {
 
     async index() {
         try {
-            return await this.$axios.$get('admin/topic')
+            return await this.$axios.$get('admin/group')
         } catch (error) {
             throw error;
         }
@@ -16,15 +16,23 @@ export const actions = {
 
     async edit() {
         try {
-            return await this.$axios.$get('admin/topic/edit')
+            return await this.$axios.$get('admin/group/edit')
         } catch (error) {
             throw error;
         }
     },
 
-    async create({}, data) {
+    async create() {
         try {
-            return await this.$axios.$post('admin/topic', data)
+            return await this.$axios.$get('admin/group/create')
+        } catch (error) {
+            throw error;
+        }
+    },
+
+    async store({}, data) {
+        try {
+            return await this.$axios.$post('admin/group', data)
         } catch (error) {
             throw error;
         }
@@ -33,7 +41,7 @@ export const actions = {
     async update({}, data){
 
         try {
-            await this.$axios.patch(`admin/topic/${data.id}`, data)
+            await this.$axios.patch(`admin/group/${data.id}`, data)
         } catch (error) {
             throw error;
         }
@@ -42,7 +50,7 @@ export const actions = {
     async delete({}, id){
 
         try {
-            await this.$axios.$delete(`admin/topic/${id}`);
+            await this.$axios.$delete(`admin/group/${id}`);
         } catch (error) {
             throw error;
         }

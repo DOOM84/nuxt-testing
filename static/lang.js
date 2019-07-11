@@ -87,7 +87,9 @@ export default {
         'variants': 'Correct answers',
         'link': 'Link',
         'interface': 'Interface:',
-        'return' : 'Return to the main page'
+        'return' : 'Return to the main page',
+        'urlTaken': 'This url has already been taken.',
+        'nameTaken': 'This name has already been taken.',
     },
     ua: {
         'app_name': 'Testing system',
@@ -178,6 +180,8 @@ export default {
         'variants': 'Варіанти відповіді',
         'link': 'Посилання',
         'interface': 'Інтерфейс:',
-        'return' : 'Повернутися на головну сторінку'
+        'return' : 'Повернутися на головну сторінку',
+        'urlTaken': 'Ця URL-адреса вже існує.',
+        'nameTaken': 'Ця назва вже існує.',
     }
 }

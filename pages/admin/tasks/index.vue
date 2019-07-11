@@ -1,9 +1,10 @@
 <template>
     <div style="padding: 20px;">
         <div style="text-align: center; padding-bottom: 20px;  ">
-        <el-button @click="toCreate" type="success">Додати тему</el-button>
+        <el-button @click="toCreate" type="success">Додати тест</el-button>
         </div>
     <el-table
+
             :data="filtered"
             style="width: 100%">
         <el-table-column
@@ -13,7 +14,7 @@
         </el-table-column>
         <el-table-column
                 label="Назва"
-                prop="name"
+                prop="body"
         >
         </el-table-column>
         <el-table-column
@@ -22,7 +23,14 @@
         </el-table-column>
         <el-table-column
                 label="Рівень"
-                prop="level">
+                prop="level.level">
+        </el-table-column>
+        <el-table-column label="Тема" >
+            <template slot-scope="props">
+                <ul>
+                    <li v-for="topic in props.row.topics">{{topic.name}}</li>
+                </ul>
+            </template>
         </el-table-column>
         <el-table-column
                 label="Опубліковано"
@@ -80,10 +88,9 @@
         },
         async asyncData({store}) {
             try {
-                const {topics} = await store.dispatch('adminTopic/index');
-                //console.log(topics);
+                const {tasks} = await store.dispatch('adminTask/index');
                 return {
-                    tableData : topics,
+                    tableData : tasks,
                 }
             } catch (error) {
                 if(error.response.status === 401){
@@ -94,7 +101,7 @@
         computed: {
             filtered: {
                 get: function () {
-                    const tableD = this.tableData.filter(data => !this.search || data.name.toLowerCase().includes(this.search.toLowerCase()) || data.level.toLowerCase().includes(this.search.toLowerCase()));
+                    const tableD = this.tableData.filter(data => !this.search || data.body.toLowerCase().includes(this.search.toLowerCase()));
                     this.pages = tableD.length;
                     return tableD.slice(this.from,this.to)
                 },
@@ -109,7 +116,7 @@
             },
 
             handleEdit(index, row) {
-                this.$router.push({name: 'admin-topics-edit', params: { 'topic': row} })
+               this.$router.push({name: 'admin-tasks-edit', params: { 'id': row.id} })
                // this.$router.push(`/admin/topics/${id}`)
             },
 
@@ -129,14 +136,14 @@
             },
 
             toCreate(){
-                this.$router.push('/admin/topics/create');
+                this.$router.push('/admin/tasks/create');
             },
 
             async delete(id){
-                await this.$store.dispatch('adminTopic/delete', id);
+                await this.$store.dispatch('adminTask/delete', id);
                 this.tableData.splice(this.tableData.findIndex(item => item.id === id), 1);
-                this.$message.success('Тему видалено');
-                this.$router.push('/admin/topics')
+                this.$message.success('Тест видалено');
+                this.$router.push('/admin/tasks')
             },
         },
     }

@@ -26,11 +26,6 @@
     import AppNav from '@/components/admin/Nav'
     export default {
         components: {AppAside, AppNav},
-        /*computed: {
-            error(){
-                return  this.$store.getters.error
-            }
-        },*/
         watch: {
             error(value){
                 this.$message.error(value.response.data.message);

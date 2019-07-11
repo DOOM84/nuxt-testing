@@ -1,7 +1,7 @@
 <template>
     <div style="padding: 20px;">
         <div style="text-align: center; padding-bottom: 20px;  ">
-        <el-button @click="toCreate" type="success">Додати тему</el-button>
+        <el-button @click="toCreate" type="success">Додати користувача</el-button>
         </div>
     <el-table
             :data="filtered"
@@ -12,21 +12,47 @@
                 width="50">
         </el-table-column>
         <el-table-column
-                label="Назва"
+                label="ПІБ"
                 prop="name"
         >
         </el-table-column>
         <el-table-column
-                label="Опис"
-                prop="description">
+                label="E-Mail адреса"
+                prop="email"
+        >
         </el-table-column>
         <el-table-column
                 label="Рівень"
-                prop="level">
+                prop="level.level"
+        >
         </el-table-column>
         <el-table-column
-                label="Опубліковано"
+                label="Група"
+                prop="group.name"
+        >
+        </el-table-column>
+        <el-table-column
+                label="Навчальний заклад"
+                prop="group.institute.name"
+        >
+        </el-table-column>
+        <el-table-column
+                width="150"
+                label="Спроби"
+                prop="attempts"
+        >
+        </el-table-column>
+        <el-table-column
+                width="150"
+                label="Статус"
                 prop="status"
+                :formatter="isActive"
+        >
+        </el-table-column>
+        <el-table-column
+                width="150"
+                label="Адміністратор"
+                prop="is_admin"
                 :formatter="status"
         >
         </el-table-column>
@@ -60,7 +86,6 @@
                 :total="pages"
                 @current-change="handleCurrentChange"
                 style="float: right;"
-
         >
         </el-pagination>
 
@@ -80,10 +105,9 @@
         },
         async asyncData({store}) {
             try {
-                const {topics} = await store.dispatch('adminTopic/index');
-                //console.log(topics);
+                const {users} = await store.dispatch('adminUser/index');
                 return {
-                    tableData : topics,
+                    tableData : users,
                 }
             } catch (error) {
                 if(error.response.status === 401){
@@ -94,7 +118,10 @@
         computed: {
             filtered: {
                 get: function () {
-                    const tableD = this.tableData.filter(data => !this.search || data.name.toLowerCase().includes(this.search.toLowerCase()) || data.level.toLowerCase().includes(this.search.toLowerCase()));
+                    const tableD = this.tableData.filter(data => !this.search ||
+                        data.name.toLowerCase().includes(this.search.toLowerCase()) ||
+                        data.email.toLowerCase().includes(this.search.toLowerCase()) ||
+                        data.group.name.toLowerCase().includes(this.search.toLowerCase()));
                     this.pages = tableD.length;
                     return tableD.slice(this.from,this.to)
                 },
@@ -107,10 +134,11 @@
             status(row, column, cellValue, index){
                 return !cellValue ? 'Ні' : 'Так'
             },
-
+            isActive(row, column, cellValue, index){
+                return !cellValue ? 'Заблокований' : 'Активний'
+            },
             handleEdit(index, row) {
-                this.$router.push({name: 'admin-topics-edit', params: { 'topic': row} })
-               // this.$router.push(`/admin/topics/${id}`)
+                this.$router.push({name: 'admin-users-edit', params: { 'user': row} })
             },
 
             handleDelete(index, row) {
@@ -129,14 +157,13 @@
             },
 
             toCreate(){
-                this.$router.push('/admin/topics/create');
+                this.$router.push('/admin/users/create');
             },
 
             async delete(id){
-                await this.$store.dispatch('adminTopic/delete', id);
+                await this.$store.dispatch('adminUser/delete', id);
                 this.tableData.splice(this.tableData.findIndex(item => item.id === id), 1);
-                this.$message.success('Тему видалено');
-                this.$router.push('/admin/topics')
+                this.$message.success('Користувача видалено');
             },
         },
     }

@@ -1,7 +1,7 @@
 <template>
     <div style="padding: 20px;">
         <div style="text-align: center; padding-bottom: 20px;  ">
-        <el-button @click="toCreate" type="success">Додати тему</el-button>
+        <el-button @click="toCreate" type="success">Додати навчальний заклад</el-button>
         </div>
     <el-table
             :data="filtered"
@@ -17,14 +17,7 @@
         >
         </el-table-column>
         <el-table-column
-                label="Опис"
-                prop="description">
-        </el-table-column>
-        <el-table-column
-                label="Рівень"
-                prop="level">
-        </el-table-column>
-        <el-table-column
+                width="150"
                 label="Опубліковано"
                 prop="status"
                 :formatter="status"
@@ -60,7 +53,6 @@
                 :total="pages"
                 @current-change="handleCurrentChange"
                 style="float: right;"
-
         >
         </el-pagination>
 
@@ -80,10 +72,9 @@
         },
         async asyncData({store}) {
             try {
-                const {topics} = await store.dispatch('adminTopic/index');
-                //console.log(topics);
+                const {institutes} = await store.dispatch('adminInst/index');
                 return {
-                    tableData : topics,
+                    tableData : institutes,
                 }
             } catch (error) {
                 if(error.response.status === 401){
@@ -94,7 +85,7 @@
         computed: {
             filtered: {
                 get: function () {
-                    const tableD = this.tableData.filter(data => !this.search || data.name.toLowerCase().includes(this.search.toLowerCase()) || data.level.toLowerCase().includes(this.search.toLowerCase()));
+                    const tableD = this.tableData.filter(data => !this.search || data.name.toLowerCase().includes(this.search.toLowerCase()));
                     this.pages = tableD.length;
                     return tableD.slice(this.from,this.to)
                 },
@@ -107,10 +98,8 @@
             status(row, column, cellValue, index){
                 return !cellValue ? 'Ні' : 'Так'
             },
-
             handleEdit(index, row) {
-                this.$router.push({name: 'admin-topics-edit', params: { 'topic': row} })
-               // this.$router.push(`/admin/topics/${id}`)
+                this.$router.push({name: 'admin-institutes-edit', params: { 'inst': row} })
             },
 
             handleDelete(index, row) {
@@ -129,14 +118,13 @@
             },
 
             toCreate(){
-                this.$router.push('/admin/topics/create');
+                this.$router.push('/admin/institutes/create');
             },
 
             async delete(id){
-                await this.$store.dispatch('adminTopic/delete', id);
+                await this.$store.dispatch('adminInst/delete', id);
                 this.tableData.splice(this.tableData.findIndex(item => item.id === id), 1);
-                this.$message.success('Тему видалено');
-                this.$router.push('/admin/topics')
+                this.$message.success('Навчальний заклад видалено');
             },
         },
     }

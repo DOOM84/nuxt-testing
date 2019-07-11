@@ -23,7 +23,6 @@
             </el-form-item>
 
             <el-form-item label="Рівень" prop="levels">
-                <!--value-key="id"-->
                 <el-select style="width: 100%;" v-model="controls.levels" multiple
                            placeholder="Виберіть рівень">
                     <el-option
@@ -108,7 +107,6 @@
                         };
 
                         try {
-                            //console.log(formData);
                             await this.$store.dispatch('adminTopic/create', formData);
                             this.$message.success('Тему додано');
                             this.loading = false;
@@ -116,8 +114,6 @@
                         } catch (e) {
                             this.loading = false
                         }
-
-
                     }
                 })
             },
