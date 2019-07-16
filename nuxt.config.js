@@ -35,6 +35,7 @@ export default {
     '@/plugins/mixins/validation.js',
     '@/plugins/mixins/locat.js',
     '@/plugins/mixins/random.js',
+    //'@/plugins/mixins/admin.js',
     '@/plugins/axios',
     '@/plugins/mixins/lang.js',
     { src: '~/plugins/vue-timers', mode: 'client' },

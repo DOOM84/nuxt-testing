@@ -1,7 +1,7 @@
 <template>
     <div style="padding: 20px;">
         <p>Всього тестів: <strong>{{tasks}}</strong></p>
-        <p>Всего тем: <strong>{{topics}}</strong> (Доступних для проходження: <strong>{{availTopics}})</strong></p>
+        <p>Всього тем: <strong>{{topics}}</strong> (Доступних для проходження: <strong>{{availTopics}})</strong></p>
         <p>Всього посилань на сторонні ресурси: <strong>{{links}}</strong></p>
         <p>Зареєстрованих користувачів: <strong>{{users}}</strong></p>
     </div>
@@ -9,7 +9,13 @@
 
 <script>
     export default {
-        layout: 'admin',
+       layout: 'admin',
+        head(){
+            return {
+                title: 'Панель управління — Головна'
+            }
+        },
+        //middleware: ['admin'],
         data(){
             return {
                 tasks : '',
@@ -32,10 +38,11 @@
                 }
             } catch (error) {
                 if(error.response.status === 401){
-                    return $nuxt.$router.replace('/login');
+                    return this.$nuxt.$router.replace('/login');
                 }
             }
         },
+
     }
 </script>
 

@@ -17,23 +17,23 @@
             <span>Tести</span>
         </el-menu-item>
         <el-menu-item index="/admin/sources">
-            <i class="el-icon-user"></i>
+            <i class="el-icon-link"></i>
             <span>Посилання</span>
         </el-menu-item>
         <el-menu-item index="/admin/levels">
-            <i class="el-icon-user"></i>
+            <i class="el-icon-d-caret"></i>
             <span>Рівні</span>
         </el-menu-item>
         <el-menu-item index="/admin/institutes">
-            <i class="el-icon-user"></i>
+            <i class="el-icon-school"></i>
             <span>Навчальні заклади</span>
         </el-menu-item>
         <el-menu-item index="/admin/branches">
-            <i class="el-icon-user"></i>
+            <i class="el-icon-s-grid"></i>
             <span>Спеціальності</span>
         </el-menu-item>
         <el-menu-item index="/admin/groups">
-            <i class="el-icon-user"></i>
+            <i class="el-icon-s-operation"></i>
             <span>Групи</span>
         </el-menu-item>
         <el-menu-item index="/admin/users">
@@ -41,7 +41,7 @@
             <span>Користувачі</span>
         </el-menu-item>
         <el-menu-item index="/admin/stats">
-            <i class="el-icon-user"></i>
+            <i class="el-icon-s-data"></i>
             <span>Статистика</span>
         </el-menu-item>
 

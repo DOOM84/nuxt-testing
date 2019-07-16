@@ -1,9 +1,12 @@
 <template>
-    <div style="padding: 50px;">
-        <h2 style="text-align: center; padding-bottom: 20px;">Додати  навчальний заклад</h2>
-
-
+    <div style="padding: 20px;">
+        <el-breadcrumb style="padding: 10px; background-color: #e9ecef" separator="/">
+            <el-breadcrumb-item to="/admin">Панель управління</el-breadcrumb-item>
+            <el-breadcrumb-item to="/admin/institutes">Навчальні заклади</el-breadcrumb-item>
+            <el-breadcrumb-item>Додати</el-breadcrumb-item>
+        </el-breadcrumb>
         <el-form
+                style="padding-top: 15px;"
                 :model="controls"
                 :rules="rules"
                 @submit.native.prevent="onSubmit"
@@ -35,6 +38,11 @@
 <script>
     export default {
         layout: 'admin',
+        head(){
+            return {
+                title: 'Панель управління — Додати навчальний заклад'
+            }
+        },
         data() {
             return {
                 controls: {

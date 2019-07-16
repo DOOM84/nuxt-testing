@@ -4,12 +4,16 @@ export const state = () => ({
     loggedIn: false,
     strategy: "local",
     user: false,
-    location: 'ua'
+    location: 'ua',
+    isAdmin: null
 });
 
 export const mutations = {
     SET_LOCATION(state, data){
         state.location = data
+    },
+    SET_ADMIN(state, data){
+        state.isAdmin = data
     }
 };
 
@@ -29,15 +33,28 @@ export const actions = {
 },
     setLocation({commit},lang){
         commit('SET_LOCATION', lang)
-    }
-};
+    },
 
+    async checkAdmin({commit}) {
+        try {
+            const adm = await this.$axios.$get('checkAdmin');
+            commit('SET_ADMIN', adm);
+            return adm;
+
+        } catch (error) {
+            throw error;
+        }
+
+    },
+};
 
 export const getters = {
 
     location(state){
         return state.location
+    },
+    isAdmin(state){
+        return state.isAdmin()
     }
-
 };
 

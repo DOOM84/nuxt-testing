@@ -1,12 +1,13 @@
 <template>
-    <div style="text-align: center">
-        Статистика
+    <div>
+    <nuxt-child />
     </div>
 </template>
 
 <script>
     export default {
-        layout: 'admin'
+        layout: 'admin',
+        middleware: ['admin']
     }
 </script>
 

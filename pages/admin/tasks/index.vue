@@ -1,6 +1,10 @@
 <template>
     <div style="padding: 20px;">
-        <div style="text-align: center; padding-bottom: 20px;  ">
+        <el-breadcrumb style="padding: 10px; background-color: #e9ecef" separator="/">
+            <el-breadcrumb-item to="/admin">Панель управління</el-breadcrumb-item>
+            <el-breadcrumb-item>Tести</el-breadcrumb-item>
+        </el-breadcrumb>
+        <div style="text-align: center; padding-bottom: 20px; padding-top: 10px;">
         <el-button @click="toCreate" type="success">Додати тест</el-button>
         </div>
     <el-table
@@ -81,6 +85,11 @@
     export default {
         mixins: [tableSearch],
         layout: 'admin',
+        head(){
+            return {
+                title: 'Панель управління — Tести'
+            }
+        },
         data() {
             return {
                 tableData: '',
@@ -94,7 +103,7 @@
                 }
             } catch (error) {
                 if(error.response.status === 401){
-                    return $nuxt.$router.replace('/login');
+                    return this.$nuxt.$router.replace('/login');
                 }
             }
         },
